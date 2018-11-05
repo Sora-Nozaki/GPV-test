@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+  <!-- Form
+  ================================================== -->
+<div class="form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">
+          yeeeeeaaaaaaaaahhh!gpvvvvvvv
+        </p>
+
+        <div>
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+        
+        <script>
+        var data_times =
+        {% autoescape false %}
+            {{data_times}}
+        {% endautoescape %}
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+         type: 'line',
+         data: {
+            labels: data_times,
+            datasets: [
+            {
+               label: "Chart-1",
+               borderColor: 'rgb(255, 0, 0)',
+               lineTension: 0, //<===追加
+               fill: false,    //<===追加
+               data: {{cloud_cover}},
+            },
+            ]
+         },
+         options: {
+            responsive: true,
+         }
+        });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
